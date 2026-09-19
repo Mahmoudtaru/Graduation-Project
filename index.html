@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d35">
+  <title>مشروع التخرج ومتحف الخريجين | Smarter With AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#071d35; --green:#00a86b; --green-dark:#087a56; --mint:#dff8ee; --paper:#fffefa; --ink:#102335; --muted:#546878; --gold:#f4b942; --line:#dce7e2; --shadow:0 24px 65px rgba(7,29,53,.13); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif; line-height:1.95; background:radial-gradient(circle at 8% 0%,#0a987121,transparent 28rem),linear-gradient(145deg,#e9f0ed,#f4f1e8 48%,#e7efeb); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    button,a { font:inherit; } a { color:inherit; }
+    .progress { position:fixed; inset:0 0 auto; z-index:50; height:5px; background:rgba(7,29,53,.08); }
+    .progress span { display:block; width:0; height:100%; background:linear-gradient(90deg,var(--green),var(--gold)); }
+    .tools { position:fixed; left:18px; bottom:18px; z-index:40; display:flex; gap:8px; }
+    .tool { width:46px; height:46px; border:0; border-radius:50%; display:grid; place-items:center; cursor:pointer; color:#fff; background:var(--navy); box-shadow:0 10px 30px rgba(7,29,53,.22); }
+    .tool:hover { transform:translateY(-2px); background:var(--green-dark); }
+    .book { width:min(1080px,calc(100% - 40px)); margin:0 auto; padding:34px 0 72px; }
+    .page { position:relative; min-height:760px; margin:0 0 30px; padding:68px 72px 86px; overflow:visible; isolation:isolate; background:var(--paper); border:2px solid var(--navy); border-radius:8px; box-shadow:var(--shadow); }
+    .page::before,.page::after { content:""; position:absolute; width:70px; height:70px; z-index:-1; pointer-events:none; }
+    .page::before { inset:16px 16px auto auto; border-top:7px solid var(--green); border-right:7px solid var(--green); }
+    .page::after { inset:auto auto 16px 16px; border-bottom:7px solid var(--green); border-left:7px solid var(--green); }
+    .page-no { position:absolute; left:34px; bottom:24px; font:700 11px Alexandria,sans-serif; color:var(--muted); direction:ltr; }
+    .brand-mini { position:absolute; right:34px; bottom:24px; font:700 10px Alexandria,sans-serif; color:var(--navy); letter-spacing:.06em; }
+    .cover { min-height:820px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#fff; background:radial-gradient(circle at 18% 18%,rgba(0,168,107,.28),transparent 30%),radial-gradient(circle at 82% 75%,rgba(244,185,66,.16),transparent 28%),linear-gradient(145deg,#06182d,#0b2b4a 65%,#073e3c); }
+    .cover .page-no,.cover .brand-mini { color:#d9f4eb; }
+    .logo { width:96px; height:96px; margin:0 auto 38px; border:2px solid rgba(255,255,255,.24); border-radius:28px; display:grid; place-items:center; background:rgba(255,255,255,.07); }
+    .logo b { font-size:28px; color:#fff; } .logo i { font-style:normal; color:var(--green); }
+    .eyebrow { display:inline-flex; align-items:center; width:max-content; max-width:100%; margin-bottom:20px; padding:8px 14px; border-radius:999px; background:var(--mint); color:var(--green-dark); font:700 13px/1.55 Alexandria,sans-serif; }
+    .cover .eyebrow { align-self:center; background:rgba(223,248,238,.12); color:#bff7df; border:1px solid rgba(223,248,238,.18); }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:820px; margin:0 auto 22px; font:800 clamp(43px,6.5vw,66px)/1.36 Alexandria,sans-serif; letter-spacing:-1.5px; }
+    h1 span { color:#75e6b8; }
+    h2 { margin-bottom:22px; color:var(--navy); font:700 clamp(28px,4.6vw,44px)/1.45 Alexandria,sans-serif; letter-spacing:-.6px; }
+    h3 { margin-bottom:9px; color:var(--navy); font:700 20px/1.55 Alexandria,sans-serif; }
+    .cover-lead { max-width:740px; margin:0 auto 34px; color:#e9f2f4; font-size:19px; line-height:1.95; }
+    .meta { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .meta span { padding:9px 15px; border:1px solid rgba(255,255,255,.19); border-radius:12px; color:#dfecef; background:rgba(255,255,255,.06); font-size:13px; font-weight:700; }
+    .lead { max-width:900px; color:#294653; font-size:19px; line-height:2; }
+    .story p { margin-bottom:19px; color:#294653; font-size:18px; line-height:2.05; }
+    .quote { margin:28px 0; padding:23px 25px; border-radius:18px; background:var(--navy); color:#fff; font-size:19px; font-weight:700; line-height:1.95; }
+    .quote em { display:block; margin-bottom:5px; color:#8ee9c5; font:700 13px/1.6 Alexandria,sans-serif; font-style:normal; }
+    .soft { padding:22px 24px; border:1px solid #bcebd8; border-radius:18px; background:var(--mint); font-size:17px; line-height:1.95; }
+    .soft.warn { border-color:#efd49d; background:#fff8e8; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:26px; }
+    .card { padding:20px; border:1px solid var(--line); border-radius:17px; background:#fff; box-shadow:0 8px 25px rgba(7,29,53,.055); }
+    .card .num { width:38px; height:38px; margin-bottom:13px; border-radius:12px; display:grid; place-items:center; background:var(--navy); color:#fff; font-weight:700; }
+    .card p { margin:0; color:var(--muted); font-size:15.5px; line-height:1.9; }
+    .contents { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:26px; }
+    .contents a { min-height:62px; padding:14px 16px; border:1px solid var(--line); border-radius:14px; background:#fff; color:var(--navy); text-decoration:none; font-size:15px; font-weight:700; line-height:1.65; }
+    .contents a:hover { border-color:var(--green); transform:translateY(-2px); }
+    .contents b { display:inline-grid; place-items:center; width:28px; height:28px; margin-left:8px; border-radius:9px; background:var(--mint); color:var(--green-dark); }
+    .steps { margin:22px 0 0; padding:0; list-style:none; counter-reset:step; }
+    .steps li { position:relative; margin-bottom:14px; padding:15px 62px 15px 18px; border-radius:14px; background:#f4f8f6; color:#294257; font-size:16.5px; line-height:1.85; }
+    .steps li::before { counter-increment:step; content:counter(step); position:absolute; right:14px; top:13px; width:34px; height:34px; border-radius:10px; display:grid; place-items:center; background:var(--green); color:#fff; font-weight:700; }
+    .checklist { display:grid; gap:12px; margin-top:22px; }
+    .check { padding:15px 17px; border:1px solid var(--line); border-radius:14px; background:#fff; font-size:16.5px; line-height:1.85; }
+    .check::before { content:"✓"; display:inline-grid; place-items:center; width:26px; height:26px; margin-left:10px; border-radius:50%; background:var(--green); color:#fff; font-weight:700; }
+    .resource-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+    .resource-link { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:11px 17px; border-radius:12px; background:var(--navy); color:#fff; text-decoration:none; font-weight:700; }
+    .resource-link.alt { background:var(--green-dark); }
+    .video-shell { overflow:hidden; margin-top:22px; border:1px solid var(--line); border-radius:22px; background:#031321; box-shadow:0 18px 45px rgba(7,29,53,.16); }
+    .video-shell iframe { display:block; width:100%; aspect-ratio:16/9; border:0; }
+    .print-media-link { display:none; padding:18px; color:#fff; text-align:center; text-decoration:none; font-weight:700; }
+    .book-switch { display:flex; align-items:center; justify-content:space-between; gap:18px; width:100%; margin-top:30px; padding:20px 22px; border:2px solid var(--navy); border-radius:18px; background:#fff; color:var(--navy); text-align:right; text-decoration:none; }
+    .book-switch:hover { transform:translateY(-3px); border-color:var(--green); box-shadow:0 14px 32px rgba(7,29,53,.12); }
+    .book-switch small { display:block; margin-bottom:4px; color:var(--green-dark); font-weight:700; }
+    .book-switch strong { display:block; font:700 19px/1.6 Alexandria,sans-serif; }
+    .book-switch b { display:grid; place-items:center; flex:0 0 46px; width:46px; height:46px; border-radius:50%; background:var(--navy); color:#fff; font-size:20px; }
+    .card,.soft,.quote,.book-switch,.check,.video-shell { break-inside:avoid; page-break-inside:avoid; }
+    .closing { display:flex; flex-direction:column; justify-content:center; text-align:center; background:linear-gradient(160deg,#f9fffc,#eef9f4); }
+    .closing .eyebrow { align-self:center; } .closing h2,.closing .lead { margin-right:auto; margin-left:auto; }
+    .signature { width:100%; margin:38px auto 0; color:var(--green-dark); text-align:center; font:700 18px/1.7 Alexandria,sans-serif; }
+    @media (max-width:720px) {
+      .book { width:100%; padding:12px 8px 64px; }
+      .page { min-height:0; margin:0 0 16px; padding:52px 28px 76px; border-width:1.5px; border-radius:6px; }
+      .page::before,.page::after { display:none; }
+      .page-no { left:28px; bottom:24px; } .brand-mini { right:28px; bottom:24px; }
+      .cover { min-height:720px; padding:58px 30px 80px; }
+      .cover h1 { font-size:40px; line-height:1.42; } .cover-lead { font-size:17px; }
+      .logo { width:78px; height:78px; margin-bottom:30px; border-radius:22px; }
+      h2 { font-size:30px; line-height:1.5; } h3 { font-size:19px; }
+      .lead { font-size:17px; line-height:2; } .story p { font-size:16.5px; line-height:2; }
+      .quote { padding:20px; font-size:17px; } .soft { padding:19px 20px; font-size:16px; }
+      .grid,.contents { grid-template-columns:1fr; }
+      .steps li { padding:15px 58px 15px 15px; font-size:16px; }
+      .resource-actions { display:grid; } .resource-link { width:100%; }
+      .book-switch { padding:17px 18px; } .book-switch strong { font-size:17px; } .book-switch b { width:42px; height:42px; flex-basis:42px; }
+      .tools { position:relative; left:auto; bottom:auto; justify-content:center; width:max-content; margin:10px auto 0; } .tool { width:42px; height:42px; }
+    }
+    @media (max-width:430px) {
+      .page { padding:48px 22px 74px; } .page-no { left:22px; } .brand-mini { right:22px; }
+      .cover { min-height:680px; padding:54px 24px 78px; } .cover h1 { font-size:34px; }
+      h2 { font-size:27px; } .meta { gap:8px; } .meta span { padding:7px 10px; font-size:11px; } .eyebrow { font-size:12px; }
+    }
+    @media print {
+      @page { size:A4; margin:0; }
+      body { background:#fff; }
+      .book { width:100%; padding:0; }
+      .tools,.progress { display:none; }
+      .page { width:210mm; min-height:297mm; margin:0; padding:19mm 18mm 22mm; border-radius:0; box-shadow:none; break-after:page; page-break-after:always; }
+      .page:last-child { break-after:auto; page-break-after:auto; }
+      .video-shell iframe { display:none; } .video-shell .print-media-link { display:block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <div class="tools" aria-label="أدوات الكتيب">
+    <button class="tool" type="button" onclick="window.print()" title="طباعة أو حفظ PDF" aria-label="طباعة أو حفظ PDF">⤓</button>
+    <button class="tool" type="button" onclick="document.getElementById('contents').scrollIntoView()" title="الفهرس" aria-label="الانتقال إلى الفهرس">☷</button>
+  </div>
+
+  <main class="book">
+    <section class="page cover" id="cover">
+      <div class="logo" aria-label="Smarter With AI"><b>S/<i>AI</i></b></div>
+      <span class="eyebrow">الدبلومة · المحاضرة الأخيرة</span>
+      <h1>مشروع التخرج<br><span>ومتحف الخريجين</span></h1>
+      <p class="cover-lead">اعرض أحسن شغلك، وورّينا الذكاء الاصطناعي دخل في شغلك إزاي واتطورت معاه.</p>
+      <div class="meta"><span>مشروع التخرج</span><span>Smarter With AI</span></div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">01</span>
+    </section>
+
+    <section class="page" id="lecture">
+      <span class="eyebrow">ابدأ من هنا</span>
+      <h2>شوف المحاضرة الأول</h2>
+      <p class="lead">في الفيديو شرحت فكرة مشروع التخرج، إزاي تضيف بياناتك ومشاريعك، وإزاي تستخدم متحف الخريجين عشان تعرض شغلك.</p>
+      <div class="video-shell">
+        <iframe src="https://www.youtube.com/embed/79-yPeWD_nQ" title="مشروع التخرج ومتحف الخريجين" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <a class="print-media-link" href="https://youtu.be/79-yPeWD_nQ" target="_blank" rel="noopener noreferrer">شاهد المحاضرة</a>
+      </div>
+      <div class="resource-actions">
+        <a class="resource-link" href="https://youtu.be/79-yPeWD_nQ?si=7WrcsMay7SsAsP6q" target="_blank" rel="noopener noreferrer">افتح المحاضرة على YouTube</a>
+        <a class="resource-link alt" href="https://smarter-alumni-museum.lovable.app/" target="_blank" rel="noopener noreferrer">افتح متحف الخريجين</a>
+      </div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">02</span>
+    </section>
+
+    <section class="page contents-page" id="contents">
+      <span class="eyebrow">خريطة الكتيب</span>
+      <h2>هنعمل إيه؟</h2>
+      <p class="lead">هنبص على الشغل اللي عملته، نختار الحاجات اللي بتمثلك، نرتب صفحتك، ونسيبها مفتوحة لأي شغل جديد تضيفه بعد كده.</p>
+      <nav class="contents" aria-label="فهرس الكتيب">
+        <a href="#idea"><b>1</b>الفكرة من مشروع التخرج</a>
+        <a href="#existing"><b>2</b>ابدأ من اللي عملته فعلًا</a>
+        <a href="#profile"><b>3</b>جهّز بياناتك وصفحتك</a>
+        <a href="#work"><b>4</b>اختار الشغل اللي هتعرضه</a>
+        <a href="#examples"><b>5</b>أمثلة من تخصصات مختلفة</a>
+        <a href="#links"><b>6</b>جهّز روابط شغلك</a>
+        <a href="#review"><b>7</b>راجع صفحتك</a>
+        <a href="#task"><b>8</b>تاسك التخرج</a>
+      </nav>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">03</span>
+    </section>
+
+    <section class="page" id="idea">
+      <span class="eyebrow">الفكرة ببساطة</span>
+      <h2>ورّينا رحلتك في حاجات ملموسة</h2>
+      <div class="story">
+        <p>طول الدبلومة جرّبنا استخدامات مختلفة للذكاء الاصطناعي: في البحث، وتنظيم المعرفة، والصور والفيديو والصوت، وبناء المواقع والتطبيقات، وحاجات كتير تانية حسب شغل كل واحد واحتياجه.</p>
+        <p>فكرة مشروع التخرج إنك تعرض الرحلة دي في حاجات ملموسة: حاجات عملتها فعلًا، أو طورتها، أو استخدمتها في شغلك أو دراستك، وتوضح من خلالها الذكاء الاصطناعي دخل معاك فين وإيه اللي اتغير مع الوقت.</p>
+        <p>ممكن تعرض حاجة واحدة مميزة، وممكن أكتر من شغل. وممكن يكون عندك مشروع كامل مكوّن من كذا جزء. ومش لازم كل حاجة تكون خلصت وقت المحاضرة؛ شارك اللي جاهز، وكمل إضافة شغلك الجديد بعدين.</p>
+      </div>
+      <div class="quote"><em>الفكرة</em>اعرض رحلتك في شغل حقيقي: اللي عملته، واللي طورته، واللي هتضيفه بعد كده.</div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">04</span>
+    </section>
+
+    <section class="page" id="existing">
+      <span class="eyebrow">ابدأ من اللي عندك</span>
+      <h2>بص على شغلك وكمل عليه براحتك</h2>
+      <div class="story">
+        <p>قبل ما تسأل نفسك: «هعمل مشروع التخرج إيه؟» ارجع للحاجات اللي عملتها من أول الدبلومة لحد دلوقتي. غالبًا هتلاقي عندك حاجات تستاهل تتعرض فعلًا، حتى لو وقت ما عملتها مكنتش بتفكر فيها كمشروع تخرج.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="num">1</div><h3>موقع أو تطبيق</h3><p>موقع شخصي، صفحة لعيادة، لعبة، اختبار، أو تطبيق بسيط بنيته واستخدمته.</p></article>
+        <article class="card"><div class="num">2</div><h3>صور أو فيديو</h3><p>إعلان، فيديو تعليمي، تصميمات، أو مشروع بصري حابب تعرضه.</p></article>
+        <article class="card"><div class="num">3</div><h3>تعليم أو بحث</h3><p>بريزنتيشن، نوت بوك، بحث، كتيب، لعبة تعليمية، أو طريقة شرح طورتها.</p></article>
+        <article class="card"><div class="num">4</div><h3>مساعد أو طريقة شغل</h3><p>مساعد شخصي، مهارة، أو طريقة بقيت تستخدمها باستمرار ووفرت عليك وقت أو حسنت شغلك.</p></article>
+      </div>
+      <div class="soft">اختار الحاجات اللي شايف إنها بتمثلك فعلًا. ولو في حاجة لسه بتشتغل عليها، ضيفها لما تخلص. المتحف مش مربوط بلحظة واحدة؛ القديم والجديد كله مرحب بيه.</div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">05</span>
+    </section>
+
+    <section class="page" id="profile">
+      <span class="eyebrow">صفحتك على المتحف</span>
+      <h2>عرّف الناس بيك ببساطة</h2>
+      <div class="story">
+        <p>ابدأ باسمك، شغلك أو تخصصك، ومجالك. بعدها اكتب نبذة قصيرة جدًا عنك. مش محتاج سيرة ذاتية؛ سطرين أو تلاتة كفاية يعرفوا الناس إنت بتعمل إيه.</p>
+        <p>بعد كده اكتب الخدمات اللي بتقدمها. ودي مهمة لأن الموقع مش مجرد معرض مشاريع؛ ممكن حد يشوف شغلك ويحتاج يتواصل معاك، أو حد من نفس مجالك يدخل يستفيد من تجربتك.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="num">ص</div><h3>صانع محتوى</h3><p>كتابة سكربتات، صناعة فيديوهات، تخطيط محتوى، أو الخدمات اللي إنت فعلًا بتقدمها.</p></article>
+        <article class="card"><div class="num">م</div><h3>معلم</h3><p>شرح، تحضير دروس، ألعاب واختبارات تعليمية، أو أي خدمة مرتبطة بتخصصك.</p></article>
+        <article class="card"><div class="num">ط</div><h3>طبيب</h3><p>تخصصك وخدماتك، ومعاها أي محتوى توعوي أو مشروع رقمي عملته.</p></article>
+        <article class="card"><div class="num">+</div><h3>أي مجال تاني</h3><p>اكتب الحاجات اللي إنت فعلًا بتعملها. مش محتاج تملأ كل خانة لمجرد إنها موجودة.</p></article>
+      </div>
+      <div class="quote"><em>خانة مهمة</em>لما الموقع يسألك الذكاء الاصطناعي ساعدك في إيه، قول اللي اتغير في شغلك فعلًا: عملت إيه أحسن، أسرع، أو بطريقة مكنتش بتعملها قبل كده.</div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">06</span>
+    </section>
+
+    <section class="page" id="work">
+      <span class="eyebrow">اختار طريقة العرض</span>
+      <h2>مشروع كامل ولا عمل لوحده؟</h2>
+      <div class="grid">
+        <article class="card"><div class="num">1</div><h3>مشروع متكامل</h3><p>لو اشتغلت على فكرة واحدة وطلع منها كذا حاجة مرتبطة ببعض، اجمعهم تحت مشروع واحد. مثال: هوية لعيادة + تصميمات + فيديو + موقع.</p></article>
+        <article class="card"><div class="num">2</div><h3>عمل مستقل</h3><p>لو عندك حاجة واحدة مميزة، ضيفها لوحدها: فيديو، تصميم، موقع، لعبة، بريزنتيشن، ملف صوت، أو أي شغل حابب تعرضه.</p></article>
+      </div>
+      <div class="story" style="margin-top:26px">
+        <p>وممكن تضيف أكتر من مشروع أو أكتر من عمل. شارك اللي جاهز دلوقتي، واللي لسه بتشتغل عليه ضيفه لما يخلص. وكل ما تعمل حاجة جديدة شايف إنها تستاهل تتعرض، ارجع ضيفها؛ الأمر فيه سعة.</p>
+      </div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">07</span>
+    </section>
+
+    <section class="page" id="examples">
+      <span class="eyebrow">أمثلة من المحاضرة</span>
+      <h2>كل واحد هيعرض حاجة شبه شغله</h2>
+      <div class="grid">
+        <article class="card"><div class="num">ي</div><h3>يوسف · طبيب أسنان</h3><p>ممكن يعرض مشروع كامل للعيادة: هوية، فيديو، تصميمات، موقع أو أي شغل يساعده يقدم نفسه وخدماته بشكل أحسن.</p></article>
+        <article class="card"><div class="num">آ</div><h3>آية · معلمة</h3><p>ألعاب واختبارات، أو طرق شرح مختلفة. زي مثال الطفل اللي بيحب الفضاء وإزاي نقرّب له المعلومة بطريقة تناسب اهتمامه.</p></article>
+        <article class="card"><div class="num">أ</div><h3>أبرار · معلمة برمجة</h3><p>ألعاب تعليمية للبرمجة، أنشطة للأطفال، أو فيديوهات وتصميمات للتعريف بالكورس أو المكان اللي بتشتغل فيه.</p></article>
+        <article class="card"><div class="num">ي</div><h3>ياسين · معلم قرآن</h3><p>موقع يعرض خدماته، خطط دروس، أنشطة، أو ترتيب محتوى الكورسات والسيشنز.</p></article>
+        <article class="card"><div class="num">إ</div><h3>صانع محتوى أو إعلانات</h3><p>إعلان كامل، أو أجزاء الشغل نفسها: الفكرة، السكربت، الستوري بورد، الصور، والفيديو النهائي.</p></article>
+        <article class="card"><div class="num">م</div><h3>محاضر أو مدرب</h3><p>تسجيل المحاضرة، تفريغها، تحويلها لشرح مكتوب أو كتيب، أو مساعد شخصي يساعده يطور شغله.</p></article>
+      </div>
+      <div class="soft">الأمثلة دي مش عشان تعمل زيها بالظبط. هي بس عشان تفتحلك أفكار من تخصصات مختلفة.</div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">08</span>
+    </section>
+
+    <section class="page" id="links">
+      <span class="eyebrow">جهّز شغلك</span>
+      <h2>خلي الروابط تفتح لأي حد</h2>
+      <div class="story">
+        <p>المتحف مش محتاج منك ترفع كل الملفات جواه. إنت بتحط الرابط اللي الناس تقدر تفتح منه شغلك.</p>
+      </div>
+      <ol class="steps">
+        <li><strong>صور أو ملفات كتير:</strong> حطهم في فولدر منظم على Google Drive، واتأكد إن أي حد معاه الرابط يقدر يفتحه.</li>
+        <li><strong>فيديو:</strong> ارفعه على YouTube. ممكن يكون Public أو Unlisted حسب اللي يناسبك.</li>
+        <li><strong>موقع أو لعبة أو تطبيق:</strong> حط الرابط المباشر للنسخة المنشورة.</li>
+        <li><strong>قبل الإرسال:</strong> افتح الرابط من نافذة Incognito أو من حساب تاني عشان تتأكد إنه شغال.</li>
+      </ol>
+      <div class="soft warn">أكتر غلطة بسيطة ممكن تعطل عرض شغلك إن الرابط يكون محتاج صلاحية. اختبره قبل ما تبعته.</div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">09</span>
+    </section>
+
+    <section class="page" id="review">
+      <span class="eyebrow">قبل ما تبعت</span>
+      <h2>راجع صفحتك مرة أخيرة</h2>
+      <p class="lead">بعد ما تخلص البيانات والمشاريع، دوس على «راجع ملفي» وشوف صفحتك هتظهر للناس إزاي.</p>
+      <div class="checklist">
+        <div class="check">اسمك والمهنة أو التخصص واضحين؟</div>
+        <div class="check">النبذة شبهك ومفهومة؟</div>
+        <div class="check">الخدمات المكتوبة هي فعلًا اللي بتقدمها؟</div>
+        <div class="check">وضحت الذكاء الاصطناعي ساعدك في إيه؟</div>
+        <div class="check">المشاريع مكتوبة بشكل يخلي الناس تفهمها؟</div>
+        <div class="check">كل الروابط شغالة من غير طلب صلاحية؟</div>
+        <div class="check">وسائل التواصل اللي ضفتها إنت حابب فعلًا تظهر للناس؟</div>
+      </div>
+      <div class="resource-actions">
+        <a class="resource-link" href="https://smarter-alumni-museum.lovable.app/submit" target="_blank" rel="noopener noreferrer">شارك في متحف الخريجين</a>
+        <a class="resource-link alt" href="https://smarter-alumni-museum.lovable.app/" target="_blank" rel="noopener noreferrer">شوف المتحف</a>
+      </div>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">10</span>
+    </section>
+
+    <section class="page" id="task">
+      <span class="eyebrow">تاسك التخرج</span>
+      <h2>اعرض رحلتك في متحف الخريجين</h2>
+      <p class="lead">ارجع للحاجات اللي عملتها، واختار الأعمال اللي شايف إنها بتمثلك وبتوضح رحلتك واستخدامك للذكاء الاصطناعي. شارك اللي جاهز دلوقتي، وسيب الباب مفتوح لأي شغل جديد تعمله بعد كده.</p>
+      <ol class="steps">
+        <li>اختار من شغلك الحاجات اللي حابب تعرضها، سواء عمل مستقل أو مشروع كامل.</li>
+        <li>جهّز الروابط والصور أو الفيديوهات الخاصة بيها.</li>
+        <li>اكتب بياناتك ونبذة قصيرة عنك والخدمات اللي بتقدمها.</li>
+        <li>اكتب ببساطة الذكاء الاصطناعي ساعدك في إيه وإنت استخدمته إزاي في شغلك.</li>
+        <li>ضيف أعمالك، وراجع شكل الصفحة والروابط.</li>
+        <li>ابعت الملف للمراجعة من خلال متحف الخريجين.</li>
+      </ol>
+      <div class="soft">ممكن تشارك حاجة واحدة أو كذا حاجة. ابدأ باللي جاهز عندك دلوقتي، وبعدها ارجع ضيف شغل جديد كل ما تعمل حاجة مميزة. المتحف مفتوح لشغلك القديم والجديد، ومش لازم تخلص كل حاجة مرة واحدة.</div>
+      <a class="book-switch" href="https://smarter-alumni-museum.lovable.app/submit" target="_blank" rel="noopener noreferrer">
+        <span><small>شارك اللي جاهز عندك</small><strong>افتح نموذج المشاركة</strong></span><b aria-hidden="true">←</b>
+      </a>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">11</span>
+    </section>
+
+    <section class="page closing" id="end">
+      <span class="eyebrow">آخر المحاضرة</span>
+      <h2>ونكمل مع بعض</h2>
+      <p class="lead">دي آخر محاضرة في الدفعة، لكن مش آخر مرة نكمل فيها مع بعض. هنفضل موجودين على الجروب ومجتمع الخريجين، ومتحف الخريجين كمان يفضل مفتوح لشغلك. كل ما تعمل حاجة جديدة أو تطور شغل قديم، تقدر ترجع تضيفه.</p>
+      <p class="lead">والفترة الجاية هيتم التواصل معاكم عشان نسمع رأيكم في الدبلومة. شاركونا اللي عجبكم واللي محتاج يتحسن؛ الاتنين مهمين جدًا بالنسبالنا عشان كل دفعة تبقى أحسن من اللي قبلها.</p>
+      <p class="lead">وفيه مفاجآت للمشاركين في متحف الخريجين، هنعلن تفاصيلها لما تبقى جاهزة.</p>
+      <div class="resource-actions" style="justify-content:center">
+        <a class="resource-link" href="https://smarter-alumni-museum.lovable.app/" target="_blank" rel="noopener noreferrer">متحف الخريجين</a>
+        <a class="resource-link alt" href="https://youtu.be/79-yPeWD_nQ?si=7WrcsMay7SsAsP6q" target="_blank" rel="noopener noreferrer">المحاضرة</a>
+      </div>
+      <p class="signature">شكرًا جدًا على الرحلة دي، وخليكم دايمًا Smarter With AI</p>
+      <span class="brand-mini">Smarter With AI</span><span class="page-no">12</span>
+    </section>
+  </main>
+
+  <script>
+    const bar = document.getElementById('progress-bar');
+    const updateProgress = () => {
+      const root = document.documentElement;
+      const distance = root.scrollHeight - root.clientHeight;
+      bar.style.width = (distance > 0 ? (root.scrollTop / distance) * 100 : 0) + '%';
+    };
+    addEventListener('scroll', updateProgress, { passive:true });
+    updateProgress();
+  </script>
+</body>
+</html>
